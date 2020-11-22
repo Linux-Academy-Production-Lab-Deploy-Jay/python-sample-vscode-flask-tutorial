@@ -22,7 +22,7 @@ strategy:
 steps:
 - task: UsePythonVersion@0
   inputs:
-    versionSpec: '$(python.version)'
+    versionSpec: '3.6'
   displayName: 'Use Python $(python.version)'
 
 - script: |
@@ -34,3 +34,13 @@ steps:
     pip install pytest pytest-azurepipelines
     pytest
   displayName: 'pytest'
+
+- script: python src/example.py
+
+- task: PythonScript@0
+  inputs:
+    scriptSource: 'inline'
+    script: |
+      print('Hello world 1')
+      print('Hello world 2')
+
